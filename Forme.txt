@@ -58,10 +58,10 @@ public class Main {
             ((dbService) f).add_db();
             ((dbService) f).del_db();
         }
-	for (dbService f : dessin) {
+	for (Forme f : dessin) {
 		if (f instanceof Cercle)	
 			if(((Cercle)f).r==0)
-            			f.del_db;
+            			((dbService)f).del_db;
         }
         for (Forme F : dessin){
             if(F instanceof  Cercle){
