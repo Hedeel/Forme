@@ -1,0 +1,73 @@
+import java.util.*;
+
+
+abstract class Forme{
+    int color;
+    Forme(int color){this.color = color;}
+    abstract float surf();
+}
+interface dbService{
+    void add_db();
+    void del_db();
+}
+
+class Rect extends Forme implements dbService {
+    float l, L;
+
+    public void add_db(){System.out.println("ajout avec succes " +color+"long " +l +"largeur"+L );}
+    public void del_db(){System.out.println("delete Rect"+color+"long " +l +"largeur"+L);}
+
+    float surf(){ return L*l;}
+    public Rect(float l, float L, int color){
+        super(color);    this.l=l;  this.L=L;
+    }
+}
+interface graph{
+    void drow();
+    void col(int couleur);
+}
+class Cercle extends Forme implements dbService , graph{
+    float r;
+    public void add_db(){System.out.println("ajout avec succes " +color+"rayon " +r );}
+    public void del_db(){System.out.println("delete cer");}
+
+    public void drow(){
+        System.out.println("tracer graph"+r);
+    }
+    public void col(int color){
+        this.color=color;
+        System.out.println("changement avec succes du couleur"+r+"vers"+color);
+    }
+
+    float surf(){ return (float)(3.14*r*r);}
+    public Cercle(float r, int color){
+        super(color);    this.r=r;
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+
+
+        Vector<Forme> dessin = new Vector<Forme>();
+        dessin.add(new Rect(100, 50, 1));
+        dessin.add(new Cercle(10, 3));
+        dessin.add(new Rect(70, 20, 4));
+        dessin.add(new Rect(100, 50, 1));
+        dessin.add(new Cercle(0, 7));
+        for (Forme f : dessin) {
+            ((dbService) f).add_db();
+            ((dbService) f).del_db();
+        }
+	for (dbService f : dessin) {
+		if (f instanceof Cercle)	
+			if(((Cercle)f).r==0)
+            			f.del_db;
+        }
+        for (Forme F : dessin){
+            if(F instanceof  Cercle){
+                ((graph)F).col(0);
+            }
+        }
+        
+    }
+}
