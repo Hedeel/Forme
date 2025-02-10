@@ -61,7 +61,7 @@ public class Main {
 	for (Forme f : dessin) {
 		if (f instanceof Cercle)	
 			if(((Cercle)f).r==0)
-            			((dbService)f).del_db;
+            			((dbService)f).del_db();
         }
         for (Forme F : dessin){
             if(F instanceof  Cercle){
